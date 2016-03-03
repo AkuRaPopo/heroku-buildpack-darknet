@@ -1,19 +1,19 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir>
 
-echo "-----> Installing DarkNet"
+echo "-----> Installing opencv"
 
 # change to the the BUILD_DIR ($1)
 cd $1
 
 # download the mruby binary (-O) silently (-s)
-curl https://bitbucket.org/emaknyus/darknet_heroku_small/raw/1f3f1654ee0243c1b4c2e94aecf336ce5946e184/darknet_heroku_small.tar.gz -s -O
+curl http://s3.amazonaws.com/tznode/vulcan-compiled-opencv.tgz -s -O
 
 # make a directory to untar (like unzip) the binary
-mkdir -p vendor/darknet
+mkdir -p vendor/opencv
 
 # untar the binary to the directory we want
-tar -C vendor/darknet -xvf darknet_heroku_small.tar.gz
+tar -C vendor/opencv -xvf vulcan-compiled-opencv.tgz
 
 # delete tmp
-rm -rf darknet_heroku_small.tar.gz
+rm -rf vulcan-compiled-opencv.tgz
