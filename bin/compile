@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # bin/compile <build-dir> <cache-dir>
+export OUT_PATH=/app/vendor/opencv
 
 echo "-----> Installing opencv"
 
@@ -17,3 +18,20 @@ tar -C vendor/opencv -xvf vulcan-compiled-opencv.tgz
 
 # delete tmp
 rm -rf vulcan-compiled-opencv.tgz
+
+###############
+#   LIBTIFF   #
+###############
+
+# Download tiff dependency
+curl http://download.osgeo.org/libtiff/tiff-4.0.3.tar.gz -o libtiff.tar.gz
+# Unzip
+tar -xvf libtiff.tar.gz
+# Get into libtiff folder
+cd tiff-4.0.3
+# Configure build
+./configure --prefix $OUT_PATH
+# Make libtiff
+make
+# Install libtiff
+make install
